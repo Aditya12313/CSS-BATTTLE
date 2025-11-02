@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Wave CSS Boat</title>
+    <style>
+        body {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .scene {
+            width: 400px;
+            height: 300px;
+            background-color: #e0f2f7; /* Sky blue */
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .water {
+            width: 100%;
+            height: 120px; /* Water height */
+            background-color: #a7d9e8; /* Base water color */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        /* Waves - STATIC (animation removed) */
+        .wave {
+            position: absolute;
+            width: 150%; 
+            height: 40px; 
+            background: #e0f2f7; 
+            border-radius: 50% / 100%; 
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            bottom: 100px; 
+            left: -25%; 
+            /* animation: wave-motion 6s linear infinite; -- REMOVED */
+        }
+        
+        /* The main wave that covers the boat's base */
+        .wave:nth-child(1) {
+            background-color: #a7d9e8; 
+            bottom: 80px; 
+            height: 60px; 
+            /* animation-delay: 0s; -- REMOVED */
+        }
+
+        /* The wave in the background */
+        .wave:nth-child(2) {
+            background-color: #9bd0e0; 
+            bottom: 90px; 
+            left: 25%; /* Set static position */
+            /* animation-delay: -3s; -- REMOVED */
+            height: 50px;
+            transform: scale(0.9);
+        }
+
+        /* @keyframes wave-motion -- ENTIRE BLOCK REMOVED */
+
+        .boat {
+            position: absolute;
+            bottom: 80px; 
+            left: 120px; 
+            z-index: 2; 
+        }
+
+        .hull {
+            width: 150px; 
+            height: 50px; 
+            background-color: #5f9ea0; 
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            /* Trapezoidal shape: Wider top, narrower bottom */
+            clip-path: polygon(
+                0% 0%,    /* Top-left point */
+                100% 0%,   /* Top-right point */
+                75% 100%,  /* Bottom-right point (moves in) */
+                25% 100%   /* Bottom-left point (moves in) */
+            );
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .mast {
+            width: 6px; 
+            height: 80px; 
+            background-color: #5f9ea0; 
+            position: absolute;
+            bottom: 45px; 
+            left: 72px; /* Centered: (150/2 - 6/2) = 72 */
+            z-index: 3;
+        }
+
+        .sail {
+            width: 0;
+            height: 0;
+            border-top: 50px solid transparent;
+            border-bottom: 30px solid transparent;
+            border-left: 90px solid #5f9ea0; 
+            
+            position: absolute;
+            /* MOVED UP: Changed bottom from 40px to 50px */
+            bottom: 50px; 
+            left: 78px; /* Attaches to the right of the mast (72px + 6px) */
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));
+            z-index: 4;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Static Wave CSS Boat</h1>
+
+    <div class="scene">
+        <div class="water">
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <div class="boat">
+            <div class="hull"></div>
+            <div class="mast"></div>
+            <div class="sail"></div>
+        </div>
+    </div>
+
+</body>
+</html>
